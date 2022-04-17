@@ -464,7 +464,7 @@ class NNTagger(object):
             ## make sure embeds_in_file match argument
             assert(len(train.seqs[0].embeds[0]) == self.embeds_in_file_dim)
 
-        print("Training Sequences: {}".format(train.seqs[0].task_id, train.seqs[1].task_id))
+        print("Training Sequences: {} {}".format(train.seqs[0].task_id, train.seqs[1].task_id))
 
         batch = []
         print("train..")
@@ -697,7 +697,7 @@ class NNTagger(object):
         if not train:
             dynet.renew_cg()
         features = self.get_features(seq, train=train, update=update_embeds, embeds_in_file=embeds_in_file)
-        print(seq.task_id, self.predictors["task_expected_at"] )
+        print(seq.task_id, self.predictors["task_expected_at"])
         output_expected_at_layer = self.predictors["task_expected_at"][seq.task_id]
         output_expected_at_layer -=1
 
@@ -877,6 +877,8 @@ class NNTagger(object):
                     for char in word:
                         if char not in self.c2i:
                             self.c2i[char] = len(self.c2i)
+
+                print(self.task2tag2idx)
 
                 if tag not in self.task2tag2idx[seq.task_id]:
                     self.task2tag2idx[seq.task_id][tag] = len(self.task2tag2idx[seq.task_id])

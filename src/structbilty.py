@@ -478,6 +478,8 @@ class NNTagger(object):
             loss_accum_tagged = defaultdict(float)
 
             for idx in indices:
+                if idx > 0 and (idx + 1) % 1000 == 0:
+                    print('{} samples processed'.format(idx))
                 seq = train.seqs[idx]
                 #assert(len(seq.words)==len(seq.embeds))
                 if seq.task_id not in losses_log:

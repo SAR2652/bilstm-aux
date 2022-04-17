@@ -48,7 +48,7 @@ class SeqData(object):
             if i > 0 and (i + 1) % 50000 == 0:
                 task_id += 1
                 self.task_ids.add(task_id)
-            self.seqs.append(Seq(item[0], item[1], task_id, [])) # empty list is embeddings
+            self.seqs.append(Seq(item[0], item[1], task_id - 1, [])) # empty list is embeddings
 
     def __iter__(self):
         """iterate over data"""

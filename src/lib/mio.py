@@ -34,7 +34,9 @@ class SeqData(object):
     def __init__(self, filename, raw=False, embeds_in_file=False):
         self.seqs = []
         self.task_ids = set()
+        print(filename)
         df = pd.read_csv(filename)
+        
         sentences = df['sentence'].tolist()
         tags = df['tags'].tolist()
         # for i, file_name in enumerate(list_folders_name):

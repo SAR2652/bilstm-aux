@@ -35,7 +35,7 @@ class SeqData(object):
         self.seqs = []
         self.task_ids = set()
         print(filename)
-        df = pd.read_csv(filename)
+        df = pd.read_csv(filename[0])
         
         sentences = df['sentence'].tolist()
         tags = df['tags'].tolist()

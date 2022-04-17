@@ -467,7 +467,7 @@ class NNTagger(object):
         batch = []
         print("train..")
         for iteration in range(num_iterations):
-
+            print(iteration)
             total_loss=0.0
             total_tagged=0.0
 
@@ -477,7 +477,10 @@ class NNTagger(object):
             loss_accum_loss = defaultdict(float)
             loss_accum_tagged = defaultdict(float)
 
+            print('Start Training for indices')
+
             for idx in indices:
+                print(idx)
                 if idx > 0 and (idx + 1) % 1000 == 0:
                     print('{} samples processed'.format(idx))
                 seq = train.seqs[idx]

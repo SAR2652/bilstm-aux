@@ -480,8 +480,7 @@ class NNTagger(object):
             print('Start Training for indices')
 
             for idx in indices:
-                print(idx)
-                if idx > 0 and (idx + 1) % 1000 == 0:
+                if idx > 0 and (idx + 1) % 500 == 0:
                     print('{} samples processed'.format(idx))
                 seq = train.seqs[idx]
                 #assert(len(seq.words)==len(seq.embeds))

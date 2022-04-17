@@ -481,7 +481,7 @@ class NNTagger(object):
             count = 0
             for idx in indices:
                 count += 1
-                if count > 0 and (count + 1) % 100 == 0:
+                if count > 0 and (count + 1) % 500 == 0:
                     print('{} samples processed'.format(count + 1))
                 seq = train.seqs[idx]
                 #assert(len(seq.words)==len(seq.embeds))

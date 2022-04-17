@@ -695,7 +695,7 @@ class NNTagger(object):
         if not train:
             dynet.renew_cg()
         features = self.get_features(seq, train=train, update=update_embeds, embeds_in_file=embeds_in_file)
-
+        print(seq.task_id, self.predictors["task_expected_at"] )
         output_expected_at_layer = self.predictors["task_expected_at"][seq.task_id]
         output_expected_at_layer -=1
 

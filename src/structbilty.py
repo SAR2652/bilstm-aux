@@ -464,6 +464,8 @@ class NNTagger(object):
             ## make sure embeds_in_file match argument
             assert(len(train.seqs[0].embeds[0]) == self.embeds_in_file_dim)
 
+        print("Training Sequences: {}".format(train.seqs[:10]))
+
         batch = []
         print("train..")
         for iteration in range(num_iterations):

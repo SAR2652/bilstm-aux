@@ -43,12 +43,12 @@ class SeqData(object):
         #     self.task_ids.add(task_id)
         #     for word_seq, tag_seq, emb_seq in read_conll_file(file_name, raw=raw, embeds_in_file=embeds_in_file):
         #         self.seqs.append(Seq(word_seq, tag_seq, task_id, embeds=emb_seq))
-        task_id = 1
+        task_id = 0
         for i, item in enumerate(list(zip(sentences, tags))):
             if i > 0 and (i + 1) % 50000 == 0:
                 task_id += 1
                 self.task_ids.add(task_id)
-            self.seqs.append(Seq(item[0], item[1], task_id - 1, [])) # empty list is embeddings
+            self.seqs.append(Seq(item[0], item[1], task_id, [])) # empty list is embeddings
 
     def __iter__(self):
         """iterate over data"""

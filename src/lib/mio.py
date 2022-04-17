@@ -1,5 +1,6 @@
 import codecs
 import numpy as np
+import pandas as pd
 from scipy import linalg
 from collections import defaultdict
 import re
@@ -30,14 +31,23 @@ class SeqData(object):
     """
     __slots__ = ['seqs', 'task_ids']
 
-    def __init__(self, list_folders_name, raw=False, embeds_in_file=False):
+    def __init__(self, filename, raw=False, embeds_in_file=False):
         self.seqs = []
         self.task_ids = set()
-        for i, file_name in enumerate(list_folders_name):
-            task_id = "task{}".format(i)
-            self.task_ids.add(task_id)
-            for word_seq, tag_seq, emb_seq in read_conll_file(file_name, raw=raw, embeds_in_file=embeds_in_file):
-                self.seqs.append(Seq(word_seq, tag_seq, task_id, embeds=emb_seq))
+        df = pd.read_csv(filename)
+        sentences = df['sentence'].tolist()
+        tags = df['tags'].tolist()
+        # for i, file_name in enumerate(list_folders_name):
+        #     task_id = "task{}".format(i)
+        #     self.task_ids.add(task_id)
+        #     for word_seq, tag_seq, emb_seq in read_conll_file(file_name, raw=raw, embeds_in_file=embeds_in_file):
+        #         self.seqs.append(Seq(word_seq, tag_seq, task_id, embeds=emb_seq))
+        task_id = 0
+        for i, item in enumerate(list(zip(sentences, tags))):
+            if i > 0 and (i + 1) % 50000 == 0:
+                task_id += 1
+                self.task_ids.add(task_id)
+            self.seqs.append(Seq(item[0], item[1], task_id, [])) 
 
     def __iter__(self):
         """iterate over data"""

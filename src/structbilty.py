@@ -464,8 +464,6 @@ class NNTagger(object):
             ## make sure embeds_in_file match argument
             assert(len(train.seqs[0].embeds[0]) == self.embeds_in_file_dim)
 
-        print("Training Sequences: {} {}".format(train.seqs[0].task_id, train.seqs[1].task_id))
-
         batch = []
         print("train..")
         for iteration in range(num_iterations):
@@ -877,8 +875,6 @@ class NNTagger(object):
                     for char in word:
                         if char not in self.c2i:
                             self.c2i[char] = len(self.c2i)
-
-                print(self.task2tag2idx)
 
                 if tag not in self.task2tag2idx[seq.task_id]:
                     self.task2tag2idx[seq.task_id][tag] = len(self.task2tag2idx[seq.task_id])

@@ -480,8 +480,9 @@ class NNTagger(object):
             print('Start Training for {} indices'.format(len(train.seqs)))
             count = 0
             for idx in indices:
+                count += 1
                 if count > 0 and (count + 1) % 100 == 0:
-                    print('{} samples processed'.format(count))
+                    print('{} samples processed'.format(count + 1))
                 seq = train.seqs[idx]
                 #assert(len(seq.words)==len(seq.embeds))
                 if seq.task_id not in losses_log:
